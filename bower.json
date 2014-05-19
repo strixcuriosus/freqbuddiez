@@ -6,6 +6,8 @@
     "angular": "*",
     "angular-route": "*",
     "angular-touch": "*",
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "KeyboardJS": "~0.4.2",
+    "underscore": "~1.6.0"
   }
 }
