@@ -1,0 +1,11 @@
+{
+  "name": "freqbuddiez",
+  "version": "",
+  "dependencies": {
+    "bootstrap-css-only": "*",
+    "angular": "*",
+    "angular-route": "*",
+    "angular-touch": "*",
+    "d3": "~3.4.8"
+  }
+}

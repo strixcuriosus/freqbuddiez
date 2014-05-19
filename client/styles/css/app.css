@@ -1,0 +1,11 @@
+#messages {
+  color: #d3d3d3;
+}
+.synthkey{
+  /*fill: url(asteroid.png);*/
+  fill: red;
+}
+
+svg {
+  background-color: white;
+}
