@@ -86,9 +86,9 @@ var synthContext = new webkitAudioContext();
   var synthkeys = [],
   oscillator,
   gainNode,
-  boardWidth = 200,
-  boardHeight = 100;
-  for (var i = 0; i < 5; i++){
+  boardWidth = 300,
+  boardHeight = 300;
+  for (var i = 0; i < noteFreqs.length; i++){
     synthkeys.push({"cx": 20*i + 10, "cy": 10*i + 10, 'r': 10, 
   'note': keyboardKeys[i], 'playing' : false
     });
@@ -108,7 +108,29 @@ var synthContext = new webkitAudioContext();
     .attr("note", function(d){return d["note"];});
 
 
+////
 
+// var svg = d3.select(".synthy").append("svg").attr("width", boardWidth)
+//     .attr("height", boardHeight);
+
+//   svg.selectAll("g")
+//     .data(synthkeys)
+//     .enter()
+//     .append("g")
+//     .attr("transform", function(d,i) { return "translate(0," + i * d.cx + ")"; });
+    
+//   svg.append("rect")
+//     .attr("width", function(d){return 20})
+//     .attr("height", function(d){return 20});
+
+//   svg.append("text")
+//     .attr("x", function(d) { return (d.cx); })
+//     .attr("y", function(d) {return d.cy / 2; })
+//     .attr("dy", ".35em")
+//     .text(function(d) { return d.note; });
+
+
+/////
 
 
 var WIDTH = 512;
