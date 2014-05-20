@@ -13,8 +13,8 @@ var synthContext = new webkitAudioContext();
   //     analyser.getByteFrequencyData(freqDomain);
   var freqDomain = new Float32Array(analyser.frequencyBinCount);
   analyser.getFloatFrequencyData(freqDomain);
-  var noteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00];
-  var keyboardKeys = ['a', 's', 'd', 'f', 'g'];
+  var noteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99];
+  var keyboardKeys = ['q', 'w', 'e', 'r', 't', 'y', 'a', 's', 'd', 'f', 'g', 'h'];
 
   var notes = {};
   for (var i = 0; i < keyboardKeys.length; i++) {
@@ -25,12 +25,15 @@ var synthContext = new webkitAudioContext();
   }
 
   var oscillators = {};
-  var playNote = function(freq) {
+  var playNote = function(freq, bcast) {
     var oscillator, noteIndex;
     if (notes[freq].pressed || oscillators[freq]) {
       // oscillator.stop(0);
       return;
     } else {
+      if (!bcast) {
+        socket.emit("sounds", {type: 'synth', freq:freq, bcast:true });        
+      }
       console.log("playing a note");
       noteIndex = notes[freq].idx;
       oscillator = synthContext.createOscillator();
@@ -50,7 +53,10 @@ var synthContext = new webkitAudioContext();
     }
   }
 
-  var endNote = function(freq) {
+  var endNote = function(freq, bcast) {
+    if (!bcast) {
+        socket.emit("sounds", {type: 'stopsynth', freq:freq, bcast:true });        
+      }
     if (oscillators[freq]) {
       var oscillator = oscillators[freq];
       var noteIndex = notes[freq].idx;

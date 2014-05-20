@@ -24,6 +24,7 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
   socket.on('sounds', function (data) {
+    console.log(data, "data!!!!!!!!!");
     socket.broadcast.emit('broadcast', data);
   });
 });

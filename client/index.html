@@ -48,14 +48,26 @@
 
     <script src="lib/socket.io-client/dist/socket.io.min.js"></script>
     <script>
+    var play = function (signal) {
+      if(playNote && signal.type === "synth") {
+        console.log(signal.freq, signal.bcast);
+        playNote(signal.freq, signal.bcast);
+      } else if (endNote && signal.type === "stopsynth") {
+        console.log(signal.freq, signal.bcast);
+        endNote(signal.freq, signal.bcast);
+      }
+      else {
+        console.log("err: possibly a non-synth signal");
+      }
+    }
       var socket = io.connect('http://localhost:9000');
       socket.on('news', function (data) {
         console.log('data');
         socket.emit('my other event', { my: 'data' });
       });
       socket.on('broadcast', function (data) {
-        console.log(Object.keys(data.sound));
-        play(data.sound);
+        console.log('got this data:', data);
+        play(data);
         console.log('got your sounds, dude!');
       });
     </script>
