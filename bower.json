@@ -8,6 +8,7 @@
     "angular-touch": "*",
     "d3": "~3.4.8",
     "KeyboardJS": "~0.4.2",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "socket.io-client": "~0.9.16"
   }
 }
