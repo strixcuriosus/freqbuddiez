@@ -37,6 +37,7 @@
     <script src="lib/d3/d3.min.js"></script>
     <script src="lib/underscore/underscore.js"></script>
     <script src="lib/timbre.min.js"></script>
+    <script src="lib/audiorecorder.min.js"></script>
 
 
     <script src="app.js"></script>
@@ -53,6 +54,8 @@
         socket.emit('my other event', { my: 'data' });
       });
       socket.on('broadcast', function (data) {
+        console.log(Object.keys(data.sound));
+        play(data.sound);
         console.log('got your sounds, dude!');
       });
     </script>

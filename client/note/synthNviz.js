@@ -9,6 +9,14 @@ var synthContext = new webkitAudioContext();
   analyser.connect(synthContext.destination);
 
 
+  var play = function(incomingData) {
+    var source = context.createBufferSource(); // Create Sound Source
+    var buffer = context.createBuffer(Codec.decode(incomingData), true); // Create Mono Source Buffer from Raw Binary
+    source.buffer = buffer; // Add Buffered Data to Object
+    source.connect(context.destination); // Connect Sound Source to Output
+    source.noteOn(context.currentTime); // Play the Source when Triggered
+  }
+
   // var freqDomain = new Uint8Array(analyser.frequencyBinCount);
   //     analyser.getByteFrequencyData(freqDomain);
   var freqDomain = new Float32Array(analyser.frequencyBinCount);
@@ -152,11 +160,12 @@ var context = synthContext || new webkitAudioContext();
   proc.connect(analyser);
   proc.onaudioprocess = function(event)
     {
+      var orig = event.inputBuffer;
       var audio_data = event.inputBuffer.getChannelData(0)|| new Float32Array(2048);
       if(audio_data[0] !== audio_data[1] && audio_data[1] !== audio_data[2]) {
         // console.log(audio_data)
         // console.log('streamers flying!');
-        socket.emit('sounds', {sound: audio_data});
+        socket.emit('sounds', {sound: orig});
         
       }
         // send audio_data to server
@@ -258,13 +267,17 @@ var context = synthContext || new webkitAudioContext();
   
   source.connect(proc);
   proc.connect(analyser);
+  analyser.connect(context.destination); //speakers
   proc.onaudioprocess = function(event)
     {
       var audio_data = event.inputBuffer.getChannelData(0)|| new Float32Array(2048);
       if(audio_data[0] !== audio_data[1] && audio_data[1] !== audio_data[2]) {
+        var compressed = Codec.encode(audio_data);
+        console.log(compressed);
+        console.log('!!!!!!!');
         // console.log(audio_data)
         // console.log('streamers flying!');
-        socket.emit('sounds', {sound: audio_data});
+        socket.emit('sounds', {sound: compressed});
         
       }
         // send audio_data to server
@@ -272,7 +285,6 @@ var context = synthContext || new webkitAudioContext();
 
   // source.connect(analyser);
 
-  analyser.connect(context.destination); //speakers
 
    var visualizer = function(){
     var canvas = mycanvas;
