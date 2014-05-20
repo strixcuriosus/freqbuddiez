@@ -12,7 +12,7 @@ var synthContext = new webkitAudioContext();
   // var freqDomain = new Uint8Array(analyser.frequencyBinCount);
   //     analyser.getByteFrequencyData(freqDomain);
   var freqDomain = new Float32Array(analyser.frequencyBinCount);
-analyser.getFloatFrequencyData(freqDomain);
+  analyser.getFloatFrequencyData(freqDomain);
   var noteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00];
   var keyboardKeys = ['a', 's', 'd', 'f', 'g'];
 
@@ -48,11 +48,11 @@ analyser.getFloatFrequencyData(freqDomain);
       // })
      notes[freq].pressed = true;
      oscillators[freq] = oscillator;
-     console.log(oscillators);
-     var freqDomain = new Uint8Array(analyser.frequencyBinCount);
-      console.log("freqdata");
-      console.log(analyser.getByteFrequencyData(freqDomain));
-      console.log(synthContext);
+    //  console.log(oscillators);
+    //  var freqDomain = new Uint8Array(analyser.frequencyBinCount);
+    //   console.log("freqdata");
+    //   console.log(analyser.getByteFrequencyData(freqDomain));
+    //   console.log(synthContext);
     }
   }
 
