@@ -113,6 +113,7 @@ d3.select(".synth")
 }();
 
 var drumUI = function () {
+  console.log("drumdrumdrum");
   var sine1 = T("sin", {freq:140, mul:0.9});
   var sine2 = T("sin", {freq:220, mul:0.5});
   d3.select(".drum")
@@ -132,6 +133,8 @@ var drumUI = function () {
      this.pause();
     }).bang().play(); 
   }
-  
+
+  KeyboardJS.on('x', playDrum);
+
 }
 
