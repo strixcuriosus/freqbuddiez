@@ -1,4 +1,20 @@
 <div class="container-fluid">
-  <h1>Freq Out!</h1>
+  <button ng-click="freqOut()">Freq Out!</button>
+  <br>
+  <div>
+    <p>synth controls:</p>
+    <span ng-repeat="sCtrl in synthctrls">
+      {{sCtrl}}
+    </span>
+    <br>
+  </div>
   <div class="synthy"></div>
+    <div>
+      <p>drum controls:</p>
+    <span ng-repeat="dCtrl in drumctrls">
+      {{dCtrl}}
+    </span>
+    <br>
+    </div>
+  <div class="drum"></div>
 </div>

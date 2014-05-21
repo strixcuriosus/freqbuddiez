@@ -28,13 +28,3 @@ io.sockets.on('connection', function (socket) {
     socket.broadcast.emit('broadcast', data);
   });
 });
-
-
-// var jam = io.of('/jam');
-// jam.on('connection', function (socket) {
-//       jam.emit('news', { hello: 'world' });
-// jam.on('sounds', function (data) {
-//     console.log('sounds!')
-//       jam.emit('broadcast', data);
-//     });
-//   });
