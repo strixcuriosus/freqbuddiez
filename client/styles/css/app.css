@@ -10,3 +10,27 @@
 .drumkey {
   fill: #008000;
 }
+body {
+  padding: 20px;
+}
+.navbar-header .navbar-brand {
+  color: #f00;
+  font: 1.5em bold;
+  font-family: 'Lobster', cursive;
+}
+#hometag {
+  color: #32cd32;
+  font-size: 1.5em;
+  font-family: 'Lobster', cursive;
+}
+#insttag {
+  color: #00f;
+  font-size: 1.5em;
+  font-family: 'Lobster', cursive;
+}
+button {
+  font-family: 'Lobster', cursive;
+}
+div {
+  float: left;
+}
